@@ -1,6 +1,26 @@
 import Head from 'next/head'
+import Message from './components/message';
+import { useEffect, useState } from 'react';
+import { db } from "../utils/firebase";
+import { async } from '@firebase/util';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 
 export default function Home() {
+  //Create a state with all posts
+  const [allPosts, setAllPosts] = useState([]);
+
+  const getPosts = async () => {
+    const collectionRef = collection(db, 'posts');
+    const q = query(collectionRef, orderBy('timestamp', 'desc'));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      setAllPosts(snapshot.docs.map((doc) => ({...doc.data()})))
+    });
+    return unsubscribe;
+  }
+
+  useEffect(() => {
+    getPosts();
+  },[])
   return (
     <div>
       <Head>
@@ -9,9 +29,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main >
-       
-      </main>
+      <div className='my-12 text-lg font-medium'>
+        <h2 className='text-2xl'>See what other people are saying</h2>
+        
+      </div>
     </div>
   )
 }

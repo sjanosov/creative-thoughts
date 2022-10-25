@@ -36,7 +36,7 @@ export default function Login() {
             <div className="py-4">
                 <h3 className="py-4">Sing in with one of the providers</h3>
                 <button onClick={GoogleLogin} className="text-white bg-gray-700 w-full font-medium rounded-lg flex align-middle p-4">
-                    <FcGoogle className="text-2xl" />
+                    <FcGoogle className="text-2xl mr-5" />
                     Sign in with Google
                 </button>
             </div>
