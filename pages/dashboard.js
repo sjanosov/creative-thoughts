@@ -60,7 +60,7 @@ export default function Dashboard() {
                     </Message>
                 )})}
             </div>
-            <button  className="font-medium text-white bg-gray-800 py-2 px-4 my-6"
+            <button  className="font-medium text-white bg-gray-800 rounded-lg py-2 px-4 my-6"
                     onClick={() => auth.signOut()}>Sign out</button>
         </div>
     )
